@@ -28,20 +28,27 @@ function App() {
           <Link className="navbar-brand d-flex align-items-center" to="/">
             <i className="bi bi-play-btn-fill me-2"></i>Seductive Streams
           </Link>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav ms-auto">
-              <li className="nav-item">
-                <Link className="nav-link" to="/">Home</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/upload">Upload</Link>
-              </li>
-              {/* Add more nav items here if needed */}
-            </ul>
-          </div>
+
+          <ul className="navbar-nav ms-auto d-flex align-items-center"> {/* ms-auto pushes items to the right */}
+            
+            {/* The Upload button, now prominent and to the far right */}
+            <li className="nav-item ms-3"> {/* Added margin-start for spacing from Home */}
+              <Link 
+                className="btn btn-primary d-flex align-items-center position-relative" // position-relative for potential badge
+                to="/upload"
+              >
+                <i className="bi bi-cloud-arrow-up-fill me-2"></i>Upload
+                {/* Optional: A notification badge. 
+                  Uncomment and add logic if you want a dynamic "notification" (e.g., new features, pending uploads).
+                  <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    New!
+                    <span className="visually-hidden">new upload features</span>
+                  </span>
+                */}
+              </Link>
+            </li>
+            {/* Add more non-collapsible nav items here if needed */}
+          </ul>
         </div>
       </nav>
 
