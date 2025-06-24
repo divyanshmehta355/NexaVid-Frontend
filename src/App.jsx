@@ -1,12 +1,11 @@
-// client/src/App.jsx
-import React from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import React from "react";
+import { Routes, Route, Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 // Import your page components
-import HomePage from './components/HomePage';
-import VideoDetailPage from './components/VideoDetailPage';
-import UploadVideo from './components/UploadVideo'; // For the new upload page
+import HomePage from "./components/HomePage";
+import VideoDetailPage from "./components/VideoDetailPage";
+import UploadVideo from "./components/UploadVideo"; // For the new upload page
 
 function App() {
   return (
@@ -14,11 +13,18 @@ function App() {
       {/* Default Helmet for the entire app, can be overridden by specific pages */}
       <Helmet>
         <title>Seductive Streams</title>
-        <meta name="description" content="Watch and upload your favorite videos on Seductive Streams." />
+        <meta
+          name="description"
+          content="Watch and upload your favorite p*rn videos on Raat Rani."
+        />
         <meta property="og:title" content="Seductive Streams" />
-        <meta property="og:description" content="Your go-to platform for captivating video content." />
+        <meta
+          property="og:description"
+          content="Your go-to platform for captivating video content."
+        />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://nexavid.pages.dev" /> {/* Update this for production */}
+        <meta property="og:url" content="https://raatrani.pages.dev" />{" "}
+        {/* Update this for production */}
         {/* You can add a default og:image here if you have one */}
       </Helmet>
 
@@ -26,14 +32,17 @@ function App() {
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
           <Link className="navbar-brand d-flex align-items-center" to="/">
-            <i className="bi bi-play-btn-fill me-2"></i>Seductive Streams
+            <i className="bi bi-play-btn-fill me-2"></i>Raat Rani
           </Link>
 
-          <ul className="navbar-nav ms-auto d-flex align-items-center"> {/* ms-auto pushes items to the right */}
-            
+          <ul className="navbar-nav ms-auto d-flex align-items-center">
+            {" "}
+            {/* ms-auto pushes items to the right */}
             {/* The Upload button, now prominent and to the far right */}
-            <li className="nav-item ms-3"> {/* Added margin-start for spacing from Home */}
-              <Link 
+            <li className="nav-item ms-3">
+              {" "}
+              {/* Added margin-start for spacing from Home */}
+              <Link
                 className="btn btn-primary d-flex align-items-center position-relative" // position-relative for potential badge
                 to="/upload"
               >
@@ -65,7 +74,10 @@ function App() {
 
       {/* Footer (Optional) */}
       <footer className="bg-dark text-white text-center py-3 mt-5">
-        <p>&copy; {new Date().getFullYear()} Seductive Streams. All rights reserved.</p>
+        <p>
+          &copy; {new Date().getFullYear()} Seductive Streams. All rights
+          reserved.
+        </p>
       </footer>
     </>
   );

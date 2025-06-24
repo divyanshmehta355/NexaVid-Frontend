@@ -1,8 +1,7 @@
-// client/src/components/VideoDetailPage.jsx
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
-import { Helmet } from 'react-helmet-async';
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import { Helmet } from "react-helmet-async";
 
 const BACKEND_API_URL = import.meta.env.VITE_BACKEND_API_URL;
 
@@ -28,8 +27,13 @@ function VideoDetailPage() {
         // or from your own MongoDB cache.
         // For Streamtape, the `id` IS the embed ID. We can infer details.
         // We can fetch the thumbnail to confirm existence and get a placeholder name if needed.
-        const thumbnailResponse = await axios.get(`${BACKEND_API_URL}/videos/${id}/thumbnail`);
-        if (thumbnailResponse.data.success && thumbnailResponse.data.thumbnailUrl) {
+        const thumbnailResponse = await axios.get(
+          `${BACKEND_API_URL}/videos/${id}/thumbnail`
+        );
+        if (
+          thumbnailResponse.data.success &&
+          thumbnailResponse.data.thumbnailUrl
+        ) {
           setVideoDetails({
             linkid: id,
             name: `Video ${id}`, // Placeholder name, adjust if you can get actual name
@@ -38,11 +42,11 @@ function VideoDetailPage() {
             // You can add more details here if your backend fetches them
           });
         } else {
-          setError('Video not found or details unavailable.');
+          setError("Video not found or details unavailable.");
         }
       } catch (err) {
-        console.error('Error fetching video details:', err);
-        setError('Failed to load video details.');
+        console.error("Error fetching video details:", err);
+        setError("Failed to load video details.");
       } finally {
         setLoading(false);
       }
@@ -56,7 +60,9 @@ function VideoDetailPage() {
     setDownloadLink(null); // Clear previous link
     try {
       // Step 1: Get download ticket
-      const ticketResponse = await axios.get(`${BACKEND_API_URL}/videos/${id}/download-ticket`);
+      const ticketResponse = await axios.get(
+        `${BACKEND_API_URL}/videos/${id}/download-ticket`
+      );
       if (ticketResponse.data.success && ticketResponse.data.ticket) {
         setDownloadTicket(ticketResponse.data.ticket);
         setTicketCountdown(ticketResponse.data.wait_time);
@@ -69,33 +75,39 @@ function VideoDetailPage() {
           if (countdown <= 0) {
             clearInterval(interval);
             // Step 2: Get actual download link using the ticket
-            const linkResponse = await axios.get(`${BACKEND_API_URL}/videos/${id}/download-link?ticket=${ticketResponse.data.ticket}`);
+            const linkResponse = await axios.get(
+              `${BACKEND_API_URL}/videos/${id}/download-link?ticket=${ticketResponse.data.ticket}`
+            );
             if (linkResponse.data.success && linkResponse.data.downloadUrl) {
               setDownloadLink(linkResponse.data.downloadUrl);
             } else {
-              alert('Failed to get download link: ' + (linkResponse.data.message || 'Unknown error'));
+              alert(
+                "Failed to get download link: " +
+                  (linkResponse.data.message || "Unknown error")
+              );
             }
             setWaitingForTicket(false);
           }
         }, 1000);
-
       } else {
-        alert('Failed to get download ticket: ' + (ticketResponse.data.message || 'Unknown error'));
+        alert(
+          "Failed to get download ticket: " +
+            (ticketResponse.data.message || "Unknown error")
+        );
         setWaitingForTicket(false);
       }
     } catch (err) {
-      console.error('Error getting download link:', err);
-      alert('Error fetching download link. Please try again.');
+      console.error("Error getting download link:", err);
+      alert("Error fetching download link. Please try again.");
       setWaitingForTicket(false);
     }
   };
 
   const handleDownload = () => {
     if (downloadLink) {
-      window.open(downloadLink, '_blank'); // Open download link in a new tab
+      window.open(downloadLink, "_blank"); // Open download link in a new tab
     }
   };
-
 
   if (loading) {
     return (
@@ -113,7 +125,12 @@ function VideoDetailPage() {
       <div className="alert alert-danger text-center my-5" role="alert">
         <h4>Error!</h4>
         <p>{error}</p>
-        <button className="btn btn-primary" onClick={() => window.location.reload()}>Reload Page</button>
+        <button
+          className="btn btn-primary"
+          onClick={() => window.location.reload()}
+        >
+          Reload Page
+        </button>
       </div>
     );
   }
@@ -130,12 +147,22 @@ function VideoDetailPage() {
     <>
       <Helmet>
         <title>{videoDetails.name} - Seductive Streams</title>
-        <meta name="description" content={`Watch ${videoDetails.name} on Seductive Streams.`} />
+        <meta
+          name="description"
+          content={`Watch ${videoDetails.name} on Seductive Streams.`}
+        />
         {/* Open Graph Meta Tags for Sharing */}
         <meta property="og:title" content={videoDetails.name} />
-        <meta property="og:description" content={`Watch ${videoDetails.name} now!`} />
+        <meta
+          property="og:description"
+          content={`Watch ${videoDetails.name} now!`}
+        />
         <meta property="og:type" content="video.other" />
-        <meta property="og:url" content={`https://your-frontend-url.pages.dev/video/${id}`} /> {/* Update this for production */}
+        <meta
+          property="og:url"
+          content={`https://your-frontend-url.pages.dev/video/${id}`}
+        />{" "}
+        {/* Update this for production */}
         <meta property="og:image" content={videoDetails.thumbnailUrl} />
         <meta property="og:site_name" content="Seductive Streams" />
       </Helmet>
@@ -144,7 +171,9 @@ function VideoDetailPage() {
         <div className="col-12 col-lg-8">
           <div className="card bg-dark text-white border-secondary shadow-lg">
             <div className="card-header border-secondary">
-              <h1 className="card-title h3 text-truncate">{videoDetails.name}</h1>
+              <h1 className="card-title h3 text-truncate">
+                {videoDetails.name}
+              </h1>
             </div>
             <div className="card-body p-0">
               {/* Streamtape Embed Player */}
@@ -156,7 +185,7 @@ function VideoDetailPage() {
                   title={videoDetails.name}
                   frameBorder="0"
                   scrolling="no"
-                  style={{ minHeight: '400px' }}
+                  style={{ minHeight: "400px" }}
                 ></iframe>
               </div>
             </div>
@@ -170,12 +199,17 @@ function VideoDetailPage() {
                   >
                     {waitingForTicket ? (
                       <>
-                        <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                        <span
+                          className="spinner-border spinner-border-sm me-2"
+                          role="status"
+                          aria-hidden="true"
+                        ></span>
                         Waiting {ticketCountdown}s for Download Ticket...
                       </>
                     ) : (
                       <>
-                        <i className="bi bi-download me-2"></i> Get Download Link
+                        <i className="bi bi-download me-2"></i> Get Download
+                        Link
                       </>
                     )}
                   </button>

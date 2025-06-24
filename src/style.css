@@ -1,9 +1,7 @@
-/* src/style.css */
-
 /* Custom styles for a more "seductive" look */
 
 body {
-  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   background-color: #1a1a1a; /* Even darker background */
   color: #f8f9fa; /* Light text for contrast */
 }
@@ -27,15 +25,14 @@ body {
 
 /* Page sections */
 .page-section {
-    opacity: 1;
-    transition: opacity 0.3s ease-in-out;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .page-section.d-none {
-    opacity: 0;
-    pointer-events: none; /* Disable interactions when hidden */
+  opacity: 0;
+  pointer-events: none; /* Disable interactions when hidden */
 }
-
 
 /* Video Card Enhancements (for thumbnails) */
 .card {
@@ -53,10 +50,10 @@ body {
 }
 
 .card img {
-    width: 100%;
-    height: 180px; /* Fixed height for thumbnails */
-    object-fit: cover; /* Ensures image covers the area, cropping if necessary */
-    border-radius: 12px 12px 0 0;
+  width: 100%;
+  height: 180px; /* Fixed height for thumbnails */
+  object-fit: cover; /* Ensures image covers the area, cropping if necessary */
+  border-radius: 12px 12px 0 0;
 }
 
 .card-body {
@@ -88,93 +85,95 @@ body {
 
 /* Video Detail Page Specifics */
 #video-player-container {
-    background-color: #000; /* Black background for video player area */
-    min-height: 350px; /* Minimum height for the player container */
-    position: relative; /* For absolutely positioned placeholder */
+  background-color: #000; /* Black background for video player area */
+  min-height: 350px; /* Minimum height for the player container */
+  position: relative; /* For absolutely positioned placeholder */
 }
 
 #player-placeholder {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 1.2rem;
-    pointer-events: none; /* Allows clicks to pass through to button if placed over it */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.2rem;
+  pointer-events: none; /* Allows clicks to pass through to button if placed over it */
 }
 
 #video-player-container iframe {
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
 }
 
 .watch-btn {
-    background-color: #ff007f; /* Seductive button color */
-    border-color: #ff007f;
-    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+  background-color: #ff007f; /* Seductive button color */
+  border-color: #ff007f;
+  transition: background-color 0.3s ease, border-color 0.3s ease,
+    transform 0.2s ease;
 }
 
 .watch-btn:hover {
-    background-color: #e60072; /* Darker on hover */
-    border-color: #e60072;
-    transform: translateY(-2px); /* Slight lift */
+  background-color: #e60072; /* Darker on hover */
+  border-color: #e60072;
+  transform: translateY(-2px); /* Slight lift */
 }
 
 .watch-btn:active {
-    transform: translateY(0);
+  transform: translateY(0);
 }
 
 #detail-video-info {
-    background-color: #333333 !important; /* Darker background for info card */
+  background-color: #333333 !important; /* Darker background for info card */
 }
 
 #detail-video-info .card-title {
-    color: #fff;
-    font-weight: 700;
+  color: #fff;
+  font-weight: 700;
 }
 
 #detail-video-info .card-text small {
-    color: #ccc !important;
+  color: #ccc !important;
 }
 
 /* Load More Button */
-#load-more-home, #load-more-related {
-    border-color: #ff007f;
-    color: #ff007f;
-    transition: background-color 0.3s ease, color 0.3s ease;
+#load-more-home,
+#load-more-related {
+  border-color: #ff007f;
+  color: #ff007f;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-#load-more-home:hover, #load-more-related:hover {
-    background-color: #ff007f;
-    color: #fff;
+#load-more-home:hover,
+#load-more-related:hover {
+  background-color: #ff007f;
+  color: #fff;
 }
 
 /* Search Bar Styling */
 .search-bar .form-control {
-    border-left: none; /* Remove left border of input to blend with addon */
-    border-right: none; /* Remove right border for clear button */
+  border-left: none; /* Remove left border of input to blend with addon */
+  border-right: none; /* Remove right border for clear button */
 }
 
 .search-bar .form-control:focus {
-    box-shadow: 0 0 0 0.25rem rgba(255, 0, 127, 0.25); /* Seductive focus glow */
-    border-color: #ff007f;
+  box-shadow: 0 0 0 0.25rem rgba(255, 0, 127, 0.25); /* Seductive focus glow */
+  border-color: #ff007f;
 }
 
 .search-bar .input-group-text {
-    border-right: none; /* Blend with input */
-    color: #ff007f; /* Icon color */
+  border-right: none; /* Blend with input */
+  color: #ff007f; /* Icon color */
 }
 .search-bar .btn-outline-secondary {
-    border-color: #ff007f; /* Seductive border color for clear button */
-    color: #ff007f;
-    transition: all 0.3s ease;
+  border-color: #ff007f; /* Seductive border color for clear button */
+  color: #ff007f;
+  transition: all 0.3s ease;
 }
 
 .search-bar .btn-outline-secondary:hover {
-    background-color: #ff007f;
-    color: #fff;
+  background-color: #ff007f;
+  color: #fff;
 }
-
 
 /* Responsive adjustments */
 @media (max-width: 991px) {
@@ -191,7 +190,7 @@ body {
     min-height: 200px; /* Adjust height for small screens */
   }
   #player-placeholder {
-      font-size: 1rem;
+    font-size: 1rem;
   }
 }
 
@@ -214,23 +213,26 @@ body::-webkit-scrollbar-thumb:hover {
   background-color: #777;
 }
 
-.download-btn { /* NEW Download Button Style */
-    background-color: #28a745; /* Bootstrap green */
-    border-color: #28a745;
-    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+.download-btn {
+  /* NEW Download Button Style */
+  background-color: #28a745; /* Bootstrap green */
+  border-color: #28a745;
+  transition: background-color 0.3s ease, border-color 0.3s ease,
+    transform 0.2s ease;
 }
 
 .download-btn:hover {
-    background-color: #218838; /* Darker green on hover */
-    border-color: #1e7e34;
-    transform: translateY(-2px); /* Slight lift */
+  background-color: #218838; /* Darker green on hover */
+  border-color: #1e7e34;
+  transform: translateY(-2px); /* Slight lift */
 }
 
 .download-btn:active {
-    transform: translateY(0);
+  transform: translateY(0);
 }
 
-#download-status { /* NEW Download Status Text */
-    font-style: italic;
-    font-size: 0.9rem;
+#download-status {
+  /* NEW Download Status Text */
+  font-style: italic;
+  font-size: 0.9rem;
 }

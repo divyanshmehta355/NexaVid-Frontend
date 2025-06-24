@@ -1,12 +1,11 @@
-// client/src/components/HomePage.jsx
-import React, { useState, useEffect, useCallback, useRef } from 'react';
-import axios from 'axios';
-import { Helmet } from 'react-helmet-async';
-import VideoCard from './VideoCard';
+import React, { useState, useEffect, useCallback, useRef } from "react";
+import axios from "axios";
+import { Helmet } from "react-helmet-async";
+import VideoCard from "./VideoCard";
 
 const BACKEND_API_URL = import.meta.env.VITE_BACKEND_API_URL;
 const INITIAL_LOAD_COUNT = 6; // How many cards to show initially
-const LOAD_MORE_COUNT = 3;    // How many more cards to load on scroll
+const LOAD_MORE_COUNT = 3; // How many more cards to load on scroll
 
 // Helper function for Fisher-Yates (Knuth) shuffle
 // Takes an array and shuffles it in place.
@@ -26,7 +25,7 @@ function HomePage() {
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
   const [error, setError] = useState(null);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [hasMore, setHasMore] = useState(true);
 
   // Ref for the loading indicator to observe for infinite scroll
@@ -43,11 +42,11 @@ function HomePage() {
         const shuffledVideos = shuffleArray([...response.data.videos]); // Create a copy before shuffling
         setAllVideos(shuffledVideos);
       } else {
-        setError(response.data.message || 'Failed to fetch videos.');
+        setError(response.data.message || "Failed to fetch videos.");
       }
     } catch (err) {
-      console.error('Error fetching videos:', err);
-      setError('Failed to load videos. Please try again later.');
+      console.error("Error fetching videos:", err);
+      setError("Failed to load videos. Please try again later.");
     } finally {
       setLoading(false);
     }
@@ -62,7 +61,7 @@ function HomePage() {
   // This runs whenever `allVideos` or `searchTerm` changes.
   useEffect(() => {
     const lowercasedSearchTerm = searchTerm.toLowerCase();
-    const filtered = allVideos.filter(video =>
+    const filtered = allVideos.filter((video) =>
       video.name.toLowerCase().includes(lowercasedSearchTerm)
     );
     setFilteredVideos(filtered);
@@ -77,27 +76,32 @@ function HomePage() {
     setLoadingMore(true);
 
     const currentLength = displayedVideos.length;
-    const nextVideos = filteredVideos.slice(currentLength, currentLength + LOAD_MORE_COUNT);
+    const nextVideos = filteredVideos.slice(
+      currentLength,
+      currentLength + LOAD_MORE_COUNT
+    );
 
     setTimeout(() => {
-      setDisplayedVideos(prevVideos => [...prevVideos, ...nextVideos]);
+      setDisplayedVideos((prevVideos) => [...prevVideos, ...nextVideos]);
       setHasMore(currentLength + nextVideos.length < filteredVideos.length);
       setLoadingMore(false);
     }, 500);
   }, [loadingMore, hasMore, displayedVideos, filteredVideos]);
 
-
   // --- Intersection Observer Setup for Infinite Scroll ---
   useEffect(() => {
     if (loading || !observerTarget.current) return;
 
-    const observer = new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting && !loadingMore && hasMore) {
-        loadMoreVideos();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !loadingMore && hasMore) {
+          loadMoreVideos();
+        }
+      },
+      {
+        rootMargin: "100px",
       }
-    }, {
-      rootMargin: '100px'
-    });
+    );
 
     observer.observe(observerTarget.current);
 
@@ -130,7 +134,9 @@ function HomePage() {
       <div className="alert alert-danger text-center my-5" role="alert">
         <h4>Error!</h4>
         <p>{error}</p>
-        <button className="btn btn-primary" onClick={fetchAllVideos}>Retry</button>
+        <button className="btn btn-primary" onClick={fetchAllVideos}>
+          Retry
+        </button>
       </div>
     );
   }
@@ -139,7 +145,10 @@ function HomePage() {
     <>
       <Helmet>
         <title>Home - Seductive Streams</title>
-        <meta name="description" content="Browse a collection of captivating videos on Seductive Streams." />
+        <meta
+          name="description"
+          content="Browse a collection of captivating videos on Seductive Streams."
+        />
       </Helmet>
 
       <div className="row mb-4">
@@ -169,7 +178,9 @@ function HomePage() {
         ) : (
           <div className="col-12 text-center my-5">
             <p className="lead">
-              {searchTerm ? `No videos found matching "${searchTerm}". Try a different term!` : 'No videos available.'}
+              {searchTerm
+                ? `No videos found matching "${searchTerm}". Try a different term!`
+                : "No videos available."}
             </p>
           </div>
         )}
