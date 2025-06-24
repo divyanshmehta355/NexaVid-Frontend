@@ -12,7 +12,7 @@ function App() {
     <>
       {/* Default Helmet for the entire app, can be overridden by specific pages */}
       <Helmet>
-        <title>Seductive Streams</title>
+        <title>Raat Rani</title>
         <meta
           name="description"
           content="Watch and upload your favorite p*rn videos on Raat Rani."
