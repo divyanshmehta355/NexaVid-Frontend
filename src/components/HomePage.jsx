@@ -162,7 +162,7 @@ function HomePage() {
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
         {displayedVideos.length > 0 ? (
           displayedVideos.map((video) => (
-            <div className="col" key={video.linkid}>
+            <div className="col" key={video.name}>
               <VideoCard video={video} />
             </div>
           ))

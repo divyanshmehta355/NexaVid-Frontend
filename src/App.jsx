@@ -18,7 +18,7 @@ function App() {
         <meta property="og:title" content="Seductive Streams" />
         <meta property="og:description" content="Your go-to platform for captivating video content." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://your-frontend-url.pages.dev" /> {/* Update this for production */}
+        <meta property="og:url" content="https://nexavid.pages.dev" /> {/* Update this for production */}
         {/* You can add a default og:image here if you have one */}
       </Helmet>
 
